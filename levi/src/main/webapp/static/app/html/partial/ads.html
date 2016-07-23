@@ -1,0 +1,46 @@
+<h2> Ads</h2>
+<a  class="btn btn-warning" href="/#/">Back</a>&emsp;<input ng-model="searchText" placeholder="search.." type="text"/>
+&emsp;<button ng-click="getAll()">Search</button>&emsp;<button ng-click="searchText=null;getAll();">Reset</button>&emsp;
+<a  class="btn btn-success" href="/#/ads/add">Add new Ad</a>
+<table class="table table-hover" data-ng-init="page=0; getAll();">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Category Name</th>
+			<th>Name</th>
+			<th>Created</th>
+			<th>Passed</th>
+			<th>Author Username</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="ad in ads">
+			<td>{{ ad.id }}</td>
+			<td>{{ ad.categoryName }}</td>
+			<td>{{ ad.name }}</td>
+			<td>{{ ad.created }}</td>
+			<td>{{ ad.passed }}</td>
+			<td>{{ ad.authorUsername }}</td>
+			<td>
+				<button class="btn btn-danger" data-ng-click="remove(ad.id);getAll();">Delete</button>
+				<a  class="btn btn-warning" href="/#/ads/edit/{{ad.id}}">Edit</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="row text-center">
+	<span data-ng-hide="hideSpinner" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+</div>
+<div class="alert alert-warning" ng-show="show_alert">
+  <button type="button" class="close" ng-click="show_alert=false">&times;</button>
+  <strong>Warning!</strong> Best check yo self, you're not looking too good.
+</div>
+
+<div class="row text-right">
+	<button class="btn btn-default" ng-click="page=page-1; getAll()" ng-disabled="page == 0">Previous</button>
+	<!--  {{ page + 1}} / {{ totalPages }} --> <span ng-repeat="a in range(0, totalPages)"><span ng-show="bold(a)"><b>{{a}}</b></span><span ng-hide="bold(a)">{{a}}</span></span>
+	<button class="btn btn-default" ng-click="page=page+1; getAll()" ng-disabled="page == totalPages - 1">Next</button>
+</div>
+
+
+<a  class="btn btn-warning" href="/#/">Back</a>
