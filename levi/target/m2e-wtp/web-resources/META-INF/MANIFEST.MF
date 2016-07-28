@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Implementation-Title: MaliOglasi
-Implementation-Version: 1.2.7.RELEASE
+Implementation-Title: Short ads
+Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: HP
-Implementation-Vendor-Id: levi
+Implementation-Vendor-Id: shAds
 Build-Jdk: 1.8.0_102
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
