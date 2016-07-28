@@ -6,21 +6,23 @@
 	<thead>
 		<tr>
 			<th>Id</th>
-			<th>Category Name</th>
-			<th>Name</th>
-			<th>Created</th>
-			<th>Passed</th>
-			<th>Author Username</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Posted</th>
+			<th>Expiring</th>
+			<th>Author</th>
+			<th>Category</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr data-ng-repeat="ad in ads">
 			<td>{{ ad.id }}</td>
-			<td>{{ ad.categoryName }}</td>
-			<td>{{ ad.name }}</td>
-			<td>{{ ad.created }}</td>
-			<td>{{ ad.passed }}</td>
-			<td>{{ ad.authorUsername }}</td>
+			<td>{{ ad.title }}</td>
+			<td>{{ ad.description }}</td>
+			<td>{{ ad.datePosted }}</td>
+			<td>{{ ad.expiryDate }}</td>
+			<td>{{ ad.user }}</td>
+			<td>{{ ad.category }}</td>
 			<td>
 				<button class="btn btn-danger" data-ng-click="remove(ad.id);getAll();">Delete</button>
 				<a  class="btn btn-warning" href="/#/ads/edit/{{ad.id}}">Edit</a>

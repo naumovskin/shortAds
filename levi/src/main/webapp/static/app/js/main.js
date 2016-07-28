@@ -399,7 +399,10 @@ leviApp.config(['$routeProvider', function($routeProvider) {
             templateUrl : '/static/app/html/partial/countries.html',
             controller: 'CountriesController'
         })
-        
+        .when('/login', {
+		templateUrl : '/static/app/html/partial/login.html',
+		controller : 'navigation'
+        })
         .otherwise({
             redirectTo: '/'
         });
