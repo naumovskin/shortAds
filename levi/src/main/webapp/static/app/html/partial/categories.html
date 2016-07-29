@@ -1,21 +1,18 @@
-<div>Activities <span class="badge">{{ totalNumOfElActivities }}</span>
-<button  class="btn btn-info" data-ng-click="activities.reverse()">Reverse</button></div>
-<a  class="btn btn-warning" href="/#/">Back</a>&emsp;<input ng-model="searchText" placeholder="search.." type="text"/>&emsp;<input ng-model="searchDescription" placeholder="search Description.." type="text"/>
-&emsp;<button ng-click="getAll()">Search</button>&emsp;<button ng-click="searchText=null;searchDescription=null; getAll();">Reset</button>&emsp;<a  class="btn btn-success" href="/#/activities/add">Add new activity</a>
+<div>Order
+<button  class="btn btn-sm btn-info" data-ng-click="activities.reverse()">Reverse</button></div>
+<a  class="btn btn-sm btn-warning" href="/#/">Back</a>&emsp;<input ng-model="searchDescription" placeholder="Search Categories.." type="text"/>&emsp;<button class="btn btn-sm btn-info">Search</button>
+&emsp;<a  ng-show="currentUser.systemRole == 'ADMIN'" class="btn btn-success" href="/#/categories/add">Add new Category</a>
 
-<table class="table table-hover" data-ng-init="selectPaginacija=4;page=0; getAll();">
+<table class="table table-hover" data-ng-init="page=0; getAll();">
 <!--  zapoceta paginacija -->
 
-<select ng-model="number" ng-init="number='4'"ng-click="getAll();">
-<option value="2">2</option>
-<option value="4">4</option>
-</select>
+
 
 	<tr>
 		<th>Id</th>
 		<th>Name</th>
 		<th>Description</th>
-		<th>Actions</th>
+		<th ng-show="currentUser.systemRole == 'ADMIN'">Actions</th>
 	</tr>
 	<tbody>
 		<!--  -->
@@ -25,6 +22,7 @@
 			<td>{{ activity.name }}</td>
 			<td>{{ activity.description }}</td>
 			<td>
+			<div ng-show="currentUser.systemRole == 'ADMIN'">
 				<button ng-show="!show" class="btn btn-danger"data-ng-click="show=true">Delete</button>
 					<a class="btn btn-warning" href="/#/categories/edit/{{activity.id}}">Edit</a>
 					<a href="/#/categories/view/{{activity.id}}"><button class="btn btn-info">View</button></a>
@@ -33,7 +31,7 @@
 					<h4>Are you sure?</h4><button class="btn btn-danger" ng-click="remove(activity.id)">Yes</button><button class="btn btn-warning" ng-click="show = !show">No</button>
 					</div>
 					
-					
+				</div>	
 			</td>
 		</tr>
 	</tbody>

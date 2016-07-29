@@ -19,16 +19,34 @@
 </head>
 <body class="bg bg-info">
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/#/">Home</a> <a class="navbar-brand"
-					href="/#/categories">Categories</a> <a class="navbar-brand"
-					href="/#/ads">Ads</a> 
-			</div>
-		</div>
-	</nav>
-	
+	 <nav class="navbar navbar-default navbar-static-top">
+      <div class="container" ng-controller="navigation">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/#/">Web Ads</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#/ads">Ads</a></li>
+            <li><a href="#/categories">Categories</a></li>   
+          </ul>
+    
+          <ul class="nav navbar-nav navbar-right">
+          	<li ng-show="!currentUser"><a href="/#/login">Login</a></li>
+            <li ng-show="!currentUser"><a href="#about">Register</a></li>
+            <li ng-show="currentUser.systemRole == 'ADMIN'"><a href="#/"><span class="label label-default">Admin</span></a></li>	
+            <li ng-show="currentUser" class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Hello, {{user.name}} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Add new</a></li>
+                <li><a href="#/currentAds">My ad's</a></li>
+                <li role="separator" class="divider"></li>
+                <li ng-show="currentUser"><a href="" ng-click="logout()">Logout</a></li>	
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 	
 	
 	

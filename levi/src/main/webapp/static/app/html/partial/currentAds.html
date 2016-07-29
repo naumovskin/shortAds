@@ -1,0 +1,40 @@
+<h2>My ad's <span class="badge">{{myAds}}</span></h2>
+
+
+
+<table ng-init="page=0; user = currentUser.id; getAll();" class="table table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th >Category</th>
+			<th >Title</th>
+			<th>Description</th>
+			<th>Date posted</th>
+			<th>Expiry date</th>
+			<th>Author</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="ad in ads">  
+				<td>{{$index + 1}}</td>
+				<td>{{ ad.category }}</td>
+				<td>{{ ad.title}}</td>
+				<td>{{ ad.description}}</td>
+				<td>{{ ad.datePosted | date: 'dd/MM/yyyy'}}</td>
+				<td>{{ ad.expiryDate | date: 'dd/MM/yyyy'}}</td>
+				<td>{{ ad.user}}</td>
+				<td>
+					<a class="btn btn-info btn-sm" href="">Edit</a>
+					<button class="btn btn-danger btn-sm" ng-click="">Delete</button>
+				</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="row text-center">
+	<span ng-hide="hideSpinner" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+	<span ng-show="showError" class="label label-danger">Ooops, something went wrong! :)</span>
+</div>
+
+

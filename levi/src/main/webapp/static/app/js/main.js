@@ -152,23 +152,34 @@ leviApp.controller('AdController', function($scope,$location,$routeParams,adServ
 	        return input;
 	    };
 	
-	//, {params: {'firstname': firstname,'lastname':lastname}}
-	$scope.getAll = function() {
-		// $scope.search u getAll kao parameter
-		adService.getAll($scope.searchText,$scope.page)
-				.success(function(data,status,headers) {
-					$scope.ads = data;
-					$scope.hideSpinner = true;
-					$scope.totalPages = headers('totalPages');
-					$scope.totalNumOfElUsers = headers('totalNumOfElUsers');
+		$scope.getAll = function() {
+			adService.getAll($scope.page, $scope.category, $scope.expiryDate, $scope.username, $scope.user)
+					.success(function(data, status, headers) {
+						$scope.ads = data;
+						$scope.hideSpinner = true;
+						$scope.totalPages = headers('total-pages');
+						$scope.myAds = headers('myAds');
+						
+//						$scope.filteredAds = [];
+//						
+//						$scope.currentPage = 1;
+//						$scope.numPerPage = 2;
+//						$scope.maxSize = 5;
+//						
+//						$scope.$watch('currentPage + numPerPage', function() {
+//							   
+//							var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+//						    var end = begin + $scope.numPerPage;
+//						   
+//						    $scope.filteredAds = $scope.ads.slice(begin, end);
+//						  });
 
-				})
-				.error(function() {
-					$scope.hideSpinner = true;
-					$scope.show_alert = true;
-
-				});
-	};
+					})
+					.error(function() {
+						$scope.showError = true;
+						$scope.hideSpinner = true;
+					});
+		};
 	
 	// gledamo da li vec postoji korisnik koji se isto zove
 	
@@ -355,11 +366,76 @@ leviApp.controller('AdController', function($scope,$location,$routeParams,adServ
 		  
 });
 
+leviApp.controller('navigation', function($rootScope, $scope, $http, $location, $route, $window){
+	
+//	$scope.tab = function(route) {
+//		return $route.current && route === $route.current.controller;
+//	};
 
+	var authenticate = function(credentials, callback) {
+
+		var headers = credentials ? {
+			authorization : "Basic "
+					+ btoa(credentials.username + ":" + credentials.password)
+		} : {};
+
+		$http.get('user', {
+			headers : headers
+		}).success(function(data) {
+			if (data.name) {
+				$rootScope.currentUser = data.principal;
+				$scope.user = data;
+			} else {
+				$rootScope.currentUser = null;
+			}
+			callback && callback($rootScope.currentUser, data);
+		}).error(function(data) {
+			$rootScope.currentUser = null;
+			callback && callback(false, data);
+		});
+
+	}
+
+	authenticate();
+
+	$scope.credentials = {};
+	
+	$scope.login = function() {
+		authenticate($scope.credentials, function(currentUser, message) {
+			if (currentUser) {
+				console.log("Login succeeded");
+				$location.path("/");
+				$window.location.reload();
+			} else {
+				console.log("Login failed");
+				$location.path("/login");
+				$scope.error = true;
+//				if (message) {
+//					NotificationService.statusBarError(message);
+//				} else {
+//					NotificationService.statusBarError("There was a problem logging in. Please try again.");
+//				}
+				$rootScope.currentUser = null;
+			}
+		})
+	};
+
+	$scope.logout = function() {
+		$http.post('logout', {}).success(function() {
+			$rootScope.currentUser = null;
+			$location.path("/");
+		}).error(function(data) {
+			console.log("Logout failed");
+			$rootScope.currentUser = null;
+		});
+	}
+	
+	
+});
 
 // ovde kao konfig kazemo da nasa aplikacija pod kljucem route provider koristi
 // sledeci mapping
-leviApp.config(['$routeProvider', function($routeProvider) {
+leviApp.config(function($routeProvider,$httpProvider) {
     $routeProvider
         .when('/', {
             templateUrl : '/static/app/html/partial/home.html'
@@ -395,18 +471,26 @@ leviApp.config(['$routeProvider', function($routeProvider) {
             templateUrl : '/static/app/html/partial/addEditAd.html',
             controller: 'AdController'
         })
-        .when('/countries', {
-            templateUrl : '/static/app/html/partial/countries.html',
-            controller: 'CountriesController'
+        .when('/myAds', {
+		templateUrl : '/static/app/html/partial/myAds.html',
+		controller : 'AdController'
         })
         .when('/login', {
 		templateUrl : '/static/app/html/partial/login.html',
 		controller : 'navigation'
         })
+        
+        .when('/register', {
+		templateUrl : '/static/app/html/partial/register.html',
+		controller : 'navigation'
+        })
+        
         .otherwise({
             redirectTo: '/'
         });
-}]);
+    
+    	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+});
 		  
 // AD SERVICE
 
