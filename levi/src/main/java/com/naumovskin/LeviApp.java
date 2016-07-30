@@ -16,4 +16,7 @@ public class LeviApp extends SpringBootServletInitializer {
 		 SpringApplication.run(LeviApp.class, args);
 	}
 
+
+	
+
 }

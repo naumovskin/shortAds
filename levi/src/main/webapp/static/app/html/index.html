@@ -15,9 +15,19 @@
 <script type="text/javascript" src="/static/app/js/main.js"></script>
 <link rel="stylesheet" type="text/css" href="/static/app/css/main.css"></link>
 
+
+<script src="/static/app/js/main.js"></script>
+<script src="/static/app/js/main.controllers.js"></script>
+<script src="/static/app/js/main.services.js"></script>
+<script src="/static/app/js/main.routes.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/app/css/main.css" />
+
+
+
+
 <title>SHADS</title>
 </head>
-<body class="bg bg-info">
+<body class="bg bg-default">
 
 	 <nav class="navbar navbar-default navbar-static-top">
       <div class="container" ng-controller="navigation">
@@ -26,8 +36,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#/ads">Ads</a></li>
-            <li><a href="#/categories">Categories</a></li>   
+          <li><a href="#/categories">Categories</a></li>  
+            <li class="location==='ads'?class='active'"><a href="#/ads">Ads</a></li>
+             
           </ul>
     
           <ul class="nav navbar-nav navbar-right">
@@ -52,7 +63,7 @@
 	
 	
 <div>
-	<img class="img-responsive" src="http://estclinic.com.au/wp-content/uploads/2014/09/banner-background-Eastern-Skin-Therapy-Melbourne-2.jpg"/>
+	<img class="img-responsive" src="http://2fujib2v7r6q4cyitks6q9dx.wpengine.netdna-cdn.com/wp-content/uploads/Market-2000wide-x-500tall1-PROGRESSIVE.jpg"/>
 </div>	
 	<div class="jumbotron">
 		<div class="container text-center">

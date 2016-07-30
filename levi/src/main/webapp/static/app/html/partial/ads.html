@@ -1,7 +1,7 @@
 <h2> Ads</h2>
 <a  class="btn btn-warning" href="/#/">Back</a>&emsp;<input ng-model="searchText" placeholder="search.." type="text"/>
 &emsp;<button ng-click="getAll()">Search</button>&emsp;<button ng-click="searchText=null;getAll();">Reset</button>&emsp;
-<a  class="btn btn-success" href="/#/ads/add">Add new Ad</a>
+<a ng-show="currentUser.systemRole == 'ADMIN' || currentUser.systemRole == 'USER'" class="btn btn-success" href="/#/ads/add">Add new Ad</a>
 <table class="table table-hover" data-ng-init="page=0; getAll();">
 	<thead>
 		<tr>
@@ -19,8 +19,8 @@
 			<td>{{ ad.id }}</td>
 			<td>{{ ad.title }}</td>
 			<td>{{ ad.description }}</td>
-			<td>{{ ad.datePosted }}</td>
-			<td>{{ ad.expiryDate }}</td>
+			<td>{{ ad.datePosted | date: dd/mm/yyyy}}</td>
+			<td>{{ ad.expiryDate | date: dd/mm/yyyy}}</td>
 			<td>{{ ad.user }}</td>
 			<td>{{ ad.category }}</td>
 			<td  ng-show="currentUser.systemRole == 'ADMIN'">

@@ -1,5 +1,7 @@
 package com.naumovskin;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +56,13 @@ public class TestData {
 	    	   //a.setCategory(c);
 	    	   a.setCategory(c);
 	    	   java.util.Date created = new java.util.Date();
-	    	   
+	    	   // timestamp for 2 weeks after posting in unix time
+	    	   long expired = created.getTime() + 1296000L * 1000;
 	    	   a.setDatePosted(created);
 	    	   a.setDescription("description");
 	    	   a.setTitle("ad_name" + i);
-	    	   a.setExpiryDate(created);
+	    	   Date expiredDate = new Date(expired);
+	    	   a.setExpiryDate(expiredDate);
 	    	   
 	    	   adService.save(a);
 	    	   

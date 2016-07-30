@@ -1,5 +1,6 @@
 package com.naumovskin.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,18 @@ public class ApiAdController {
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<AdDTO> add(@RequestBody AdDTO newAd) {
 
+		
+		java.util.Date created = new java.util.Date();
+ 	   // timestamp for 2 weeks after posting in unix time
+ 	   long expired = created.getTime() + 1296000L * 1000;
+ 	   
+ 	   Date expiredDate = new Date(expired);
+ 	   newAd.setExpiryDate(expiredDate);
+ 	   newAd.setDatePosted(created);
+		
+		
+		
+		
 		Ad savedAd = adService.save(toAd.convert(newAd));
 
 		return new ResponseEntity<>(toDTO.convert(savedAd), HttpStatus.CREATED);
