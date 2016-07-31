@@ -36,12 +36,10 @@ leviApp.controller('CategoryController', function($scope,$http,$location, $route
 	
 	$scope.getAll = function() {
 		
-		categoryService.getAll($scope.searchDescription,$scope.searchText,$scope.page,$scope.number)
+		categoryService.getAll()
 				.success(function(data,status,headers) {
-					$scope.activities = data;
+					$scope.categories = data;
 					$scope.hideSpinner = true;
-					$scope.totalPages = headers('totalPages');
-					$scope.totalNumOfElActivities = headers('totalNumOfElActivities');
 				})
 				.error(function() {
 					$scope.hideSpinner = true;
@@ -49,6 +47,40 @@ leviApp.controller('CategoryController', function($scope,$http,$location, $route
 					
 				});
 	};
+	
+	// za category kombobox
+//	
+//$scope.getCategoriesByName = function() {
+//		
+//		categoryService.getAllCategoriesByName()
+//				.success(function(data,status,headers) {
+//					$scope.categories = data;
+//					$scope.hideSpinner = true;
+//					$scope.totalPages = headers('totalPages');
+//					$scope.totalNumOfElActivities = headers('totalNumOfElActivities');
+//				})
+//				.error(function() {
+//					$scope.hideSpinner = true;
+//					$scope.show_alert = true;
+//					
+//				});
+//	};
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// remove from edit page
 	$removeFromEdit = function(id){
 		categoryService.getOne(id)
@@ -91,18 +123,32 @@ leviApp.controller('CategoryController', function($scope,$http,$location, $route
 				});
 	};
 	
-	$scope.initCategories = function() {
+	$scope.initCategory = function() {
 		$scope.category = {};
+		if($routeParams.id){
+			categoryService.getOne($routeParams.id)
+				.success(function(data) {
+					$scope.category = data;
+					$scope.hideSpinner = true;
+			})
+				.error(function() {
+					$scope.hideSpinner = true;
+					$scope.show_alert = true;
+				});
+		}
+		else {
 			categoryService.getAll()
-					.success(function(data) {
-						$scope.category = data;
-						$scope.hideSpinner = true;
-					})
-					.error(function() {
-						$scope.hideSpinner = true;
-						$scope.show_alert = true;
-					});
-	};
+			.success(function(data) {
+				$scope.category = data;
+			})
+			.error(function() {
+				$scope.hideSpinner = true;
+				$scope.show_alert = true;
+			});
+};
+			
+		}
+
 	
 	$scope.saveCategory = function() {
 		categoryService.save($scope.category)

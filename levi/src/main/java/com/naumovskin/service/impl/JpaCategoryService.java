@@ -35,6 +35,11 @@ public class JpaCategoryService implements CategoryService {
 		categoryRepository.delete(id);
 		return category;
 	}
+//	@Override
+//	public List<Category> findAllOrderByCategoryNameAsc() {
+		
+//		return categoryRepository.findAllOrderByCategoryNameAsc();
+//	}
 
 }
 		

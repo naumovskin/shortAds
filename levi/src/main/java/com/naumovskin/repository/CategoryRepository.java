@@ -16,6 +16,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 	Category save(Category cat);
 
 	void delete(Long id);
+	// metoda za combobox
+//	List<Category> findAllOrderByCategoryNameAsc();
 	
 	
 }

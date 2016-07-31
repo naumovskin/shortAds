@@ -14,5 +14,7 @@ public interface CategoryService {
 	
 	Category delete(Long id);
 	
+//	List<Category> findAllOrderByCategoryNameAsc();
+	
 	
 }

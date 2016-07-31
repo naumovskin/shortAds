@@ -17,11 +17,11 @@
 	<tbody>
 		<!--  -->
 		
-		<tr data-ng-repeat="activity in activities">
+		<tr data-ng-repeat="c in categories">
 		
-			<td>{{ activity.id }}</td>
-			<td>{{ activity.name }}</td>
-			<td>{{ activity.description }}</td>
+			<td>{{ c.id }}</td>
+			<td>{{ c.name }}</td>
+			<td>{{ c.description }}</td>
 			<td>
 			<div ng-show="currentUser.systemRole == 'ADMIN'">
 				<button ng-show="!show" class="btn btn-danger"data-ng-click="show=true">Delete</button>
