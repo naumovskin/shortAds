@@ -15,16 +15,16 @@ var leviApp = angular.module('leviApp', [
 
 
 
-		
-
-// za add i edit stranice da bude naziv posebno
-leviApp.run(['$rootScope', function($rootScope) {
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
-    });
-}]);
-
-
+//		
+//
+//// za add i edit stranice da bude naziv posebno
+//leviApp.run(['$rootScope', function($rootScope) {
+//    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+//        $rootScope.title = current.$route.title;
+//    });
+//}]);
+//
+//
 
 
 

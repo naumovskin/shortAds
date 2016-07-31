@@ -16,6 +16,7 @@
 	</tr>
 	<tbody>
 		<!--  -->
+		
 		<tr data-ng-repeat="activity in activities">
 		
 			<td>{{ activity.id }}</td>
@@ -30,9 +31,9 @@
 					<div ng-show="show">
 					<h4>Are you sure?</h4><button class="btn btn-danger" ng-click="remove(activity.id)">Yes</button><button class="btn btn-warning" ng-click="show = !show">No</button>
 					</div>
-					
 				</div>	
 			</td>
+			
 		</tr>
 	</tbody>
 </table>
@@ -53,5 +54,5 @@
 </div>
 
 <br/>
-<a  class="btn btn-warning" href="/#/">Back</a>
+<a  class="btn btn-sm btn-warning" href="/#/">Back</a>
 <!-- activity in activities | orderBy:'$index':true  -->

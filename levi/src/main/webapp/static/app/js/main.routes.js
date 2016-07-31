@@ -39,7 +39,7 @@ leviApp.config(function($routeProvider,$httpProvider) {
             controller: 'AdController'
         })
         .when('/myAds', {
-		templateUrl : '/static/app/html/partial/myAds.html',
+		templateUrl : '/static/app/html/partial/currentAds.html',
 		controller : 'AdController'
         })
         .when('/login', {

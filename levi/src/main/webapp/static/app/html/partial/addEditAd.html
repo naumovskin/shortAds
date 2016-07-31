@@ -1,10 +1,10 @@
 <h2>Add/edit Ad</h2>
 
-<form class="form-horizontal" data-ng-init="initUser(); initCategories()">
-  
-  <select ng-model="category.name" ng-options="cat for cat in category" required>
+<form class="form-horizontal" data-ng-init="initUser(); initAd();">
+
+
+  <select ng-model="selectedBox" ng-options="title for title in ad">
 </select>
-  
   
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Name</label>

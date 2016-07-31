@@ -1,5 +1,5 @@
 <h2> Ads</h2>
-<a  class="btn btn-warning" href="/#/">Back</a>&emsp;<input ng-model="searchText" placeholder="search.." type="text"/>
+<a  class="btn btn-sm btn-warning" href="/#/">Back</a>&emsp;<input ng-model="searchText" placeholder="search.." type="text"/>
 &emsp;<button ng-click="getAll()">Search</button>&emsp;<button ng-click="searchText=null;getAll();">Reset</button>&emsp;
 <a ng-show="currentUser.systemRole == 'ADMIN' || currentUser.systemRole == 'USER'" class="btn btn-success" href="/#/ads/add">Add new Ad</a>
 <table class="table table-hover" data-ng-init="page=0; getAll();">
@@ -45,4 +45,4 @@
 </div>
 
 
-<a  class="btn btn-warning" href="/#/">Back</a>
+<a  class="btn btn-sm btn-warning" href="/#/">Back</a>

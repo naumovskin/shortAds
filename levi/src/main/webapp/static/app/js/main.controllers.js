@@ -232,6 +232,15 @@ leviApp.controller('AdController', function($scope,$location,$routeParams,adServ
 
 					});
 		}
+		else {
+			adService.getAll()
+				.success(function(data){
+					$scope.ad = data;
+				})
+				.error(function(data){
+					$scope.show_alert = true;
+				});
+		}
 	};
 	
 	$scope.saveAd = function() {
