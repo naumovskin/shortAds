@@ -1,1 +1,1 @@
-# shortAds - simple implementation of spring security with angularJS
+# shortAds - Simple implementation of spring security with angularJS
