@@ -4,7 +4,7 @@ import com.naumovskin.model.User;
 
 public interface AuthorizationService {
 	
-boolean isAdmin(UserDetailsImpl userDetails);
+	boolean isAdmin(UserDetailsImpl userDetails);
 	
 	boolean canAccessAd(UserDetailsImpl userDetails, User user);
 	

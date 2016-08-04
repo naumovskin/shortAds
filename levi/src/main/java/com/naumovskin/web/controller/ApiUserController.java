@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.naumovskin.model.User;
 import com.naumovskin.service.UserService;
 import com.naumovskin.support.UserDTOToUser;
+import com.naumovskin.support.UserRegistrationDTOToUser;
 import com.naumovskin.support.UserToUserDTO;
 import com.naumovskin.web.dto.UserDTO;
+import com.naumovskin.web.dto.UserRegistrationDTO;
 
 @RestController
 @RequestMapping(value = "/api/users")
@@ -29,6 +31,9 @@ public class ApiUserController {
 
 	@Autowired
 	private UserToUserDTO toDTO;
+	
+	@Autowired
+	private UserRegistrationDTOToUser rDTOToUser;
 
 	@RequestMapping(method = RequestMethod.GET)
 	ResponseEntity<List<UserDTO>> getUsers() {// promenjena paginacija na false
@@ -56,22 +61,24 @@ public class ApiUserController {
 		return new ResponseEntity<>(toDTO.convert(deleted), HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<UserDTO> add(@RequestBody UserDTO newUser) {
+	@RequestMapping(value = "/register",method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<UserDTO> add(@RequestBody UserRegistrationDTO newUser) {
 
-		User savedUser = userService.save(toUser.convert(newUser));
+		User savedUser = userService.save(rDTOToUser.convert(newUser));
 
 		return new ResponseEntity<>(toDTO.convert(savedUser), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/{id}", consumes = "application/json")
-	public ResponseEntity<UserDTO> edit(@RequestBody UserDTO u, @PathVariable Long id) {
+	@RequestMapping(value = "/{id}",method = RequestMethod.PUT, consumes = "application/json")
+	public ResponseEntity<UserDTO> edit(@RequestBody UserRegistrationDTO u, @PathVariable Long id) {
 
+		System.out.println(u);
+		
 		if (id != u.getId()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		User persisted = userService.save(toUser.convert(u));
+		User persisted = userService.save(rDTOToUser.convert(u));
 
 		return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.OK);
 	}

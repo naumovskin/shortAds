@@ -52,6 +52,11 @@ leviApp.config(function($routeProvider,$httpProvider) {
 		controller : 'navigation'
         })
         
+        .when('/editProfile', {
+		templateUrl : '/static/app/html/partial/editProfile.html',
+		controller : 'navigation'
+        })
+        
         .otherwise({
             redirectTo: '/'
         });

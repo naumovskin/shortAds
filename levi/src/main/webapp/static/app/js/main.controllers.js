@@ -486,5 +486,30 @@ leviApp.controller('navigation', function($rootScope, $scope, $http, $location, 
 		});
 	}
 	
+	// registracija
+	$scope.register = function() {
+		$http.post('api/users/register',$scope.user)
+			.success(function(){
+				$location.path("/");
+			})
+			.error(function(data){
+				console.log('Registration failed');
+				
+			});
+		
+	}
+	
+	$scope.editProfile = function() {
+		$http.put('api/users/' + $scope.currentUser.id,$scope.user)
+			.success(function(){
+				$location.path("/");
+			})
+			.error(function(data){
+				console.log('Editing failed');
+				
+			});
+		
+	}
+	
 	
 });

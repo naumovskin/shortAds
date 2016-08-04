@@ -22,14 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
 	}
         
-//	@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
 			.httpBasic().and()
 			.authorizeRequests()
-//				.antMatchers("/index.html", "/home.html", "/login.html", "/", "/api/ads", "/api/users", "/partial/ads.html").permitAll()
-//				.anyRequest().authenticated()
+				.antMatchers("/index.html", "/home.html","register.html", "/login.html", "/", "/api/ads", "/api/users", "/partial/ads.html").permitAll()
+				.anyRequest().authenticated()
 				.anyRequest().permitAll()
 				.and()
 				

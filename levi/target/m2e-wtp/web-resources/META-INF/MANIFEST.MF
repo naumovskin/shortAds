@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Implementation-Vendor: Pivotal Software, Inc.
 Implementation-Title: Short ads
 Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: dzo-100
 Implementation-Vendor-Id: shAds
-Build-Jdk: 1.7.0_101
-Built-By: dzon
+Build-Jdk: 1.8.0_101
 Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
 
