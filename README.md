@@ -1,5 +1,5 @@
 # shortAds
-- Simple implementation of spring security with angularJS
+- Simple Implementation of Spring Security with AngularJS
 
 # Technologies and frameworks used in this project:
 - Java, Spring Boot, Maven, Hibernate, Spring Data JPA and MySQL as RDBMS solution.
